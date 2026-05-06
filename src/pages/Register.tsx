@@ -72,7 +72,10 @@ export default function Register() {
                   type="email"
                   placeholder="you@example.com"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    if (errors.email) setErrors((p) => ({ ...p, email: "" }));
+                  }}
                 />
                 {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
               </div>
@@ -83,12 +86,12 @@ export default function Register() {
                   type="password"
                   placeholder="8-20 characters"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    if (errors.password) setErrors((p) => ({ ...p, password: "" }));
+                  }}
                 />
                 {errors.password && <p className="text-sm text-destructive">{errors.password}</p>}
-                <p className="text-xs text-muted-foreground">
-                  8-20 chars, uppercase, lowercase, number, special character
-                </p>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="confirmPassword">Confirm Password</Label>
@@ -97,7 +100,10 @@ export default function Register() {
                   type="password"
                   placeholder="Re-enter password"
                   value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  onChange={(e) => {
+                    setConfirmPassword(e.target.value);
+                    if (errors.confirmPassword) setErrors((p) => ({ ...p, confirmPassword: "" }));
+                  }}
                 />
                 {errors.confirmPassword && <p className="text-sm text-destructive">{errors.confirmPassword}</p>}
               </div>
